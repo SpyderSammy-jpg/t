@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Material</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f0f0f;
+      color: white;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+    }
+
+    .box {
+      background:#1e1e1e;
+      padding:20px;
+      border-radius:12px;
+      width:300px;
+    }
+
+    input, button {
+      width:100%;
+      padding:10px;
+      margin-top:10px;
+      border:none;
+      border-radius:6px;
+    }
+
+    button {
+      background:#00c853;
+      color:white;
+      cursor:pointer;
+      font-weight:bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2>Add Material</h2>
+
+  <input id="name" placeholder="wood, foam, tape...">
+  <input id="amount" type="number" placeholder="amount">
+
+  <button onclick="send()">Add</button>
+</div>
+
+<script>
+const API = "https://script.google.com/a/macros/jcpsnj.org/s/AKfycbzT1cuZZc283bzCT8_vLF6uwMXSwk0dP0KtVkatou_wsUz-tQQ0ZeZPykmcRgVs34A5/exec";
+
+function send() {
+  const name = document.getElementById("name").value.toLowerCase();
+  const amount = Number(document.getElementById("amount").value);
+
+  fetch(API, {
+    method: "POST",
+    body: JSON.stringify({ name, amount })
+  })
+  .then(r => r.text())
+  .then(data => alert("Sent to Google Doc 🚀"));
+}
+</script>
+
+</body>
+</html>
